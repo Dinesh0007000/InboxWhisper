@@ -16,7 +16,7 @@
 ## 🚀 How to Install
 ```
 1. Clone this repository:
-   git clone https://github.com/yourusername/inboxwhisper.git
+   git clone https://github.com/Dinesh0007000/InboxWhisper/
 Open Chrome and go to chrome://extensions/
 
 Enable Developer mode
