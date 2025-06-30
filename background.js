@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.type === "OPENROUTER_SUMMARIZE") {
-        const apiKey = "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"; // your OpenRouter key
+        const apiKey = "YOUR_API_KEY"; // your OpenRouter key
 
         const prompt = `
 Summarize the following email in a maximum of 3 lines. Make it empathetic and friendly like you're explaining to a friend:
