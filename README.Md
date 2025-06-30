@@ -26,7 +26,7 @@ Click Load unpacked and select the cloned inboxwhisper folder
 Open Gmail → Open an email → Click "🎙️ Read Mail Summary"
 ```
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 JavaScript
 
 Chrome Extensions API
@@ -37,13 +37,13 @@ SpeechSynthesis API — for browser-based voice output
 
 (Previously integrated with Murf AI TTS API — now replaced with native speech for cost-free usage)
 
-🎨 Assets & Attribution
+## 🎨 Assets & Attribution
 ```
 📬 Icon made by Freepik from www.flaticon.com
 Licensed under Creative Commons BY 3.0
 ```
 
-📦 Dependencies
+## 📦 Dependencies
 
 A working internet connection
 
@@ -51,17 +51,17 @@ Gmail account (extension works on Gmail web)
 
 OpenRouter API key (free tier available at openrouter.ai)
 
-⚠️ Known Limitations
+## ⚠️ Known Limitations
 SpeechSynthesis voice may vary by OS (Linux users may need speech-dispatcher)
 
 Gmail DOM changes may break selector logic (can be patched)
 
 OpenRouter free tier has daily limits
 
-🤝 Authors
+## 🤝 Authors
 👨‍💻 Gavireddy Dinesh Karthik
 
 Contributions welcome via PRs!
 
-📄 License
+## 📄 License
 MIT License
