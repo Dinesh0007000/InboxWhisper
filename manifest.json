@@ -1,25 +1,17 @@
 {
     "manifest_version": 3,
-    "name": "InboxWhisper",
-    "version": "2.0",
-    "description": "Voice-controlled Gmail assistant using Murph AI.",
+    "name": "Email Summarizer with Voice",
+    "version": "1.0",
+    "description": "Summarizes email content in Gmail using OpenRouter and reads it aloud with Murf AI emotional voices.",
     "permissions": [
-        "storage",
-        "scripting",
-        "activeTab"
-    ],
-    "host_permissions": [
-        "https://mail.google.com/*",
-        "https://api.murf.ai/*"
+        "activeTab",
+        "storage"
     ],
     "background": {
         "service_worker": "background.js"
     },
     "action": {
-        "default_popup": "popup.html",
-        "default_icon": {
-            "16": "icon.png"
-        }
+        "default_popup": "popup.html"
     },
     "content_scripts": [
         {
@@ -27,15 +19,13 @@
                 "https://mail.google.com/*"
             ],
             "js": [
-                "lib/sentiment.min.js",
-                "summarize.js",
-                "murphTTS.js",
-                "voiceInput.js",
-                "emotionDetect.js",
-                "scamDetect.js",
-                "regretResponder.js",
                 "content.js"
-            ]
+            ],
+            "run_at": "document_idle"
         }
-    ]
+    ],
+    "icons": {
+        "48": "icon48.png",
+        "128": "icon128.png"
+    }
 }
