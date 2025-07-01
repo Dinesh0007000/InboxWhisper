@@ -1,64 +1,72 @@
-console.log("✅ InboxWhisper loaded");
+function extractEmailContent() {
+    const selectors = [
+        '.a3s.aiL', '.ii.gt', '.gs .a3s', '.message_content',
+        '[data-message-id]', '.a3s.aXjCH', '.adn.ads'
+    ];
 
-// 🔁 Detect Gmail Email Open Dynamically
-const observer = new MutationObserver(() => {
-    const subjectElement = document.querySelector("h2.hP");
-    const bodyElement = document.querySelector("div.a3s.aiL");
+    // Sensitive keywords for OTPs and bank transactions
+    const sensitiveKeywords = [
+        'otp', 'one time password', 'one-time password', 'password', 'pin',
+        'bank', 'transaction', 'account number', 'credit card', 'debit card',
+        'balance', 'payment', 'authorization code', 'security code'
+    ];
 
-    if (subjectElement && bodyElement) {
-        const subject = subjectElement.innerText.trim();
-        const body = bodyElement.innerText.trim();
-
-        if (!document.getElementById("inbox-whisper-btn")) {
-            createReadButton(subject, body);
+    for (const selector of selectors) {
+        const element = document.querySelector(selector);
+        if (element) {
+            let text = element.innerText
+                .replace(/\s+/g, ' ')
+                .replace(/(\r\n|\n|\r)/gm, ' ')
+                .replace(/--\s*Sent from my.*$/i, '')
+                .trim();
+            if (text.length > 0) {
+                // Check for sensitive keywords (case-insensitive)
+                const textLower = text.toLowerCase();
+                const isSensitive = sensitiveKeywords.some(keyword => {
+                    const regex = new RegExp(`\\b${keyword}\\b`, 'i');
+                    return regex.test(textLower) && (
+                        keyword === 'otp' || keyword.includes('password') || keyword.includes('code') ?
+                            /\d{4,6}/.test(textLower) : true // Require numbers for OTP/password/code
+                    );
+                });
+                if (isSensitive) {
+                    return { error: 'This email contains sensitive information (e.g., OTP or bank details) and cannot be summarized for security reasons.' };
+                }
+                return text.substring(0, 10000);
+            }
         }
     }
-});
-
-observer.observe(document.body, { childList: true, subtree: true });
-
-// 🔊 Create Interactive Read Button
-function createReadButton(subject, body) {
-    const btn = document.createElement("button");
-    btn.id = "inbox-whisper-btn";
-    btn.innerText = "🎙️ Read Mail Summary";
-    btn.style.position = "fixed";
-    btn.style.bottom = "20px";
-    btn.style.right = "20px";
-    btn.style.zIndex = 9999;
-    btn.style.padding = "12px 16px";
-    btn.style.backgroundColor = "#6200ea";
-    btn.style.color = "#fff";
-    btn.style.border = "none";
-    btn.style.borderRadius = "8px";
-    btn.style.fontSize = "14px";
-    btn.style.fontWeight = "bold";
-    btn.style.boxShadow = "0px 4px 12px rgba(0, 0, 0, 0.2)";
-
-    btn.addEventListener("click", () => {
-        console.log("🎯 Button clicked!");
-
-        chrome.runtime.sendMessage({
-            type: "OPENROUTER_SUMMARIZE",
-            text: `Subject: ${subject}. Body: ${body}`
-        }, (response) => {
-            if (chrome.runtime.lastError) {
-                console.error("❌ Chrome message error:", chrome.runtime.lastError.message);
-                return;
-            }
-
-            if (response && response.success) {
-                const summaryText = response.summary;
-                console.log("🗣️ Speaking summary:", summaryText); // ✅ Add this
-                const audio = new SpeechSynthesisUtterance(summaryText);
-                window.speechSynthesis.speak(audio);
-            }
-            else {
-                console.error("❌ Summary failed:", response?.error || "No summary returned.");
-            }
-        });
-
-    });
-
-    document.body.appendChild(btn);
+    return '';
 }
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === 'getEmailContent') {
+        let attempts = 0;
+        const maxAttempts = 5;
+        const delay = 1500;
+
+        function tryExtract() {
+            try {
+                const result = extractEmailContent();
+                if (typeof result === 'string') {
+                    sendResponse({ emailContent: result });
+                } else if (result.error) {
+                    sendResponse({ error: result.error });
+                    chrome.storage.local.set({ lastError: result.error });
+                } else if (attempts < maxAttempts) {
+                    attempts++;
+                    setTimeout(tryExtract, delay);
+                } else {
+                    sendResponse({ error: 'No email content found. Ensure an email is open in Gmail.' });
+                    chrome.storage.local.set({ lastError: 'No email content found after 5 attempts.' });
+                }
+            } catch (error) {
+                sendResponse({ error: 'Error extracting email content: ' + error.message });
+                chrome.storage.local.set({ lastError: 'Extraction error: ' + error.message });
+            }
+        }
+
+        tryExtract();
+        return true;
+    }
+});
