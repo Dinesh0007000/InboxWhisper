@@ -25,17 +25,21 @@ Installation Steps
 Clone the Repository:
 git clone https://github.com/Dinesh0007000/InboxWhisper/
 cd InboxWhisper
+
 Add API Keys:
 Open popup.js in the project folder.
 Replace YOUR_NEW_OPENROUTER_API_KEY with your OpenRouter API key.
 Replace ap2_f7dc729e-f448-42d8-b93a-3c2580ab7975 with your Murf AI API key (if different).
 Security Note: For local testing, keys are safe. For production, use a backend proxy to secure API keys.
+
 Ensure Icons:
 Verify icon48.png and icon128.png are in the project folder (download from Flaticon if needed).
+
 Load the Extension:
 Open Chrome and navigate to chrome://extensions/.
 Enable Developer mode (toggle in the top-right).
 Click Load unpacked and select the InboxWhisper folder.
+
 Test the Extension:
 Disable Gmail’s offline mode: Gmail > Settings > See all settings > Offline > Uncheck “Enable offline mail” > Save.
 Open Gmail (https://mail.google.com/?offline_allowed=0) and view an email.
@@ -85,6 +89,7 @@ Once published, search for “InboxWhisper” in the Chrome Web Store.
 Click Add to Chrome to install instantly.
 No manual setup or API keys required (keys are managed server-side via a secure backend).
 Status: Not yet published. Contact the author (below) to request publication or check the GitHub repository for updates.
+
 Web-Based Version (Future Plan):
 A web app version is under consideration, allowing users to log in with Gmail via a browser and access summaries without installing an extension.
 Visit [project website] (TBD) for updates on availability.
@@ -98,25 +103,29 @@ JavaScript: Core logic for the Chrome extension.
 Chrome Extensions API: For Gmail content extraction and popup UI.
 OpenRouter API: Powers multilingual summarization and emotional analysis using mistralai/mixtral-8x7b-instruct and openchat/openchat-7b:free.
 Murf AI API: Provides high-quality, multilingual TTS with voices like ta-IN-abirami, bn-IN-anwesha, and en-US-cooper.
-🎨 Assets & Attribution
+```
+
+## 🎨 Assets & Attribution
 📬 Icon: Made by Freepik from www.flaticon.com, licensed under Creative Commons BY 3.0.
-📦 Dependencies
+
+## 📦 Dependencies
 A working internet connection.
 Gmail account (extension works on Gmail web).
 OpenRouter API key (free tier at openrouter.ai).
 Murf AI API key (available at murf.ai).
-⚠️ Known Limitations
+
+## ⚠️ Known Limitations
 API Rate Limits: OpenRouter’s free tier has daily limits; upgrade to a paid plan for heavy usage.
 Gmail DOM Changes: Updates to Gmail’s interface may break selectors. Report issues on GitHub for quick patches.
 Language Accuracy: Summarization accuracy for less-represented languages (e.g., Bengali, Tamil) may vary due to LLM training data. English summaries are most reliable.
 Sensitive Content Detection: May occasionally block non-sensitive emails with keywords like “bank” (e.g., “river bank”). Refinements ongoing.
 Gmail Offline Mode: Can cause delays or errors. Disable offline mode for best performance.
-```
 
-## 🤝 Authors
+
+## 🤝 Author
 👨‍💻 Gavireddy Dinesh Karthik
 
-Contributions welcome via pull requests! See CONTRIBUTING.md for guidelines.
+Contributions welcome via pull requests!.
 
 ## 📄 License
 MIT License
