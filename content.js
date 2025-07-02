@@ -4,7 +4,6 @@ function extractEmailContent() {
         '[data-message-id]', '.a3s.aXjCH', '.adn.ads'
     ];
 
-    // Sensitive keywords for OTPs and bank transactions
     const sensitiveKeywords = [
         'otp', 'one time password', 'one-time password', 'password', 'pin',
         'bank', 'transaction', 'account number', 'credit card', 'debit card',
@@ -20,7 +19,6 @@ function extractEmailContent() {
                 .replace(/--\s*Sent from my.*$/i, '')
                 .trim();
             if (text.length > 0) {
-                // Check for sensitive keywords (case-insensitive)
                 const textLower = text.toLowerCase();
                 const isSensitive = sensitiveKeywords.some(keyword => {
                     const regex = new RegExp(`\\b${keyword}\\b`, 'i');
