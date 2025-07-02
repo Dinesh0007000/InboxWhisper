@@ -1,17 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>InboxWhisper Settings</title>
+    <meta charset="UTF-8">
+    <title>Email Summarizer</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <label for="lang">Choose Language:</label>
-    <select id="lang">
-        <option value="en-US">English</option>
-        <option value="hi-IN">Hindi</option>
-        <option value="ta-IN">Tamil</option>
-    </select>
+    <div id="container">
+        <h2>Email Summarizer</h2>
+        <label for="language-select">Summary Language:</label>
+        <select id="language-select">
+            <option value="en-US">English</option>
+            <option value="hi-IN">Hindi</option>
+            <option value="ta-IN">Tamil</option>
+            <option value="bn-IN">Bengali</option>
+            <option value="it-IT">Italian</option>
+            <option value="es-ES">Spanish</option>
+        </select>
+        <label for="voice-select">Voice:</label>
+        <select id="voice-select">
+            <option value="en-US-cooper" data-lang="en-US">Cooper (Male, English, Conversational/Promo)</option>
+            <option value="en-UK-hazel" data-lang="hi-IN">Hazel (Female, Hindi, Conversational)</option>
+            <option value="ta-IN-abirami" data-lang="ta-IN">Abirami (Female, Tamil, Conversational)</option>
+            <option value="bn-IN-anwesha" data-lang="bn-IN">Anwesha (Female, Bengali, Conversational)</option>
+            <option value="it-IT-giorgio" data-lang="it-IT">Giorgio (Male, Italian, Conversational)</option>
+            <option value="en-UK-hazel-es" data-lang="es-ES">Hazel (Female, Spanish, Conversational)</option>
+        </select>
+        <label for="emotional-response">Enable Emotional Response:</label>
+        <input type="checkbox" id="emotional-response" checked>
+        <button id="summarize-btn">Summarize Email</button>
+        <p id="summary">Summary: <span id="summary-content">Click Summarize to process the email...</span></p>
+        <button id="play-btn" disabled>Play Summary</button>
+    </div>
     <script src="popup.js"></script>
 </body>
 
