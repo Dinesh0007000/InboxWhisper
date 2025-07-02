@@ -118,5 +118,5 @@ Gmail Offline Mode: Can cause delays or errors. Disable offline mode for best pe
 
 Contributions welcome via pull requests! See CONTRIBUTING.md for guidelines.
 
-📄 License
+## 📄 License
 MIT License
