@@ -1,4 +1,54 @@
 body {
-    font-family: sans-serif;
+    width: 400px;
     padding: 10px;
+    font-family: Arial, sans-serif;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+p {
+    margin: 5px 0;
+}
+
+#summary {
+    font-size: 14px;
+}
+
+#summary-content {
+    font-style: italic;
+}
+
+button {
+    padding: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+select,
+input[type="checkbox"] {
+    padding: 8px;
+}
+
+label {
+    font-size: 14px;
+}
+
+#tamil-warning {
+    font-size: 12px;
 }
