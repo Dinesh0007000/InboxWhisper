@@ -109,18 +109,21 @@ Murf AI API: Provides high-quality, multilingual TTS with voices like ta-IN-abir
 📬 Icon: Made by Freepik from www.flaticon.com, licensed under Creative Commons BY 3.0.
 
 ## 📦 Dependencies
+```
 A working internet connection.
 Gmail account (extension works on Gmail web).
 OpenRouter API key (free tier at openrouter.ai).
 Murf AI API key (available at murf.ai).
+```
 
 ## ⚠️ Known Limitations
+```
 API Rate Limits: OpenRouter’s free tier has daily limits; upgrade to a paid plan for heavy usage.
 Gmail DOM Changes: Updates to Gmail’s interface may break selectors. Report issues on GitHub for quick patches.
 Language Accuracy: Summarization accuracy for less-represented languages (e.g., Bengali, Tamil) may vary due to LLM training data. English summaries are most reliable.
 Sensitive Content Detection: May occasionally block non-sensitive emails with keywords like “bank” (e.g., “river bank”). Refinements ongoing.
 Gmail Offline Mode: Can cause delays or errors. Disable offline mode for best performance.
-
+```
 
 ## 🤝 Author
 👨‍💻 Gavireddy Dinesh Karthik
