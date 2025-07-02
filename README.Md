@@ -1,5 +1,5 @@
 # 📬 InboxWhisper - Smart Email Voice Reader
-InboxWhisper2.0 is a Chrome extension that enhances productivity and accessibility by summarizing Gmail emails and reading them aloud using AI-generated voices. It supports multiple languages, detects emotional tones for empathetic responses, and includes security features to protect sensitive information.
+InboxWhisper is a Chrome extension that enhances productivity and accessibility by summarizing Gmail emails and reading them aloud using AI-generated voices. It supports multiple languages, detects emotional tones for empathetic responses, and includes security features to protect sensitive information.
 
 ## 🔍 Features
 ```
