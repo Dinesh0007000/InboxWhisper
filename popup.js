@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const sentimentResponse = await fetchWithRetry('https://openrouter.ai/api/v1/chat/completions', {
                             method: 'POST',
                             headers: {
-                                'Authorization': 'Bearer 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',
+                                'Authorization': 'Bearer YOUR_OPEN_ROUTER_KEY',
                                 'Content-Type': 'application/json'
                             },
                             body: JSON.stringify({
